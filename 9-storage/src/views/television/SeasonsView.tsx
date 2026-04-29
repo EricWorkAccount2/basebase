@@ -1,5 +1,4 @@
 import { useParams, useSearchParams } from 'react-router-dom';
-import { ImageGrid, Pagination } from '@/components';
 import { TV_ENDPOINT } from '@/core';
 import { useTmdb } from '@/hooks';
 

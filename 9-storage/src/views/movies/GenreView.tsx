@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { ImageGrid, Pagination } from '@/components';
-import { type ImageCell, IMAGE_BASE_URL, MOVIE_ENDPOINT, TV_ENDPOINT } from '@/core';
+import { type ImageCell, IMAGE_BASE_URL, DISCOVER_ENDPOINT } from '@/core';
 import { useTmdb } from '@/hooks';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,8 +13,7 @@ export const GenreView = () => {
   
   const genreIdNum = parseInt(genreId);
   
-  const endpoint = mediaType === 'movie' ? MOVIE_ENDPOINT : TV_ENDPOINT;
-  const { data } = useTmdb<any>(`${endpoint}/discover/${mediaType}`, {
+  const { data } = useTmdb<any>(`${DISCOVER_ENDPOINT}/${mediaType}`, {
     with_genres: genreIdNum,
     page,
   }, [mediaType, genreId, page]);
