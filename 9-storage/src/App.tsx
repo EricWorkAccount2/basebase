@@ -4,22 +4,20 @@ import {
   CreditsView,
   EpisodeView,
   ErrorView,
-  FavoritesView,
   GenreView,
   HomeView,
   ImagesView,
   MovieView,
-  NowPlayingView,
+  MoviesView,
   PersonView,
   ReviewsView,
   SearchView,
   SeasonsView,
-  SettingsView,
   TelevisionView,
   TrendingView,
   TrailersView,
 } from '@/views';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 export const App = () => {
   return (
@@ -27,7 +25,10 @@ export const App = () => {
       <Route path="/" element={<HomeView />} />
       <Route element={<MainLayout />}>
         {/* Movies */}
-        <Route path="/now-playing" element={<NowPlayingView />} />
+        <Route path="/movies">
+          <Route index element={<Navigate to="/movies/now_playing" replace />} />
+          <Route path=":category" element={<MoviesView />} />
+        </Route>
         <Route path="/trending" element={<TrendingView />} />
         <Route path="/genre" element={<GenreView />} />
         <Route path="/search" element={<SearchView />} />
@@ -50,9 +51,7 @@ export const App = () => {
         <Route path="/person/:id/career" element={<CareerView />} />
         <Route path="/person/:id/images" element={<ImagesView />} />
         
-        {/* User */}
-        <Route path="/favorites" element={<FavoritesView />} />
-        <Route path="/settings" element={<SettingsView />} />
+        {/* User (removed) */}
       </Route>
       <Route path="*" element={<ErrorView />} />
     </Routes>
